@@ -1,0 +1,59 @@
+// Definición de la clase Led
+class Led {
+  private:
+    int pin;
+
+  public:
+    // Constructor
+    Led(int pinNumero) {
+      pin = pinNumero;
+      pinMode(pin, OUTPUT);
+    }
+
+    // Métodos para encender y apagar
+    void encender() {
+      digitalWrite(pin, HIGH);
+    }
+
+    void apagar() {
+      digitalWrite(pin, LOW);
+    }
+
+    void toggle() {
+      digitalWrite(pin, !digitalRead(pin));
+    }
+};
+
+// Crear 4 instancias de la clase Led
+Led led1(2);
+Led led2(3);
+Led led3(4);
+Led led4(5);
+
+void setup() {
+  // No es necesario hacer nada aquí, ya que el constructor configura los pines
+}
+
+void loop() {
+  // Encender todos los LEDs
+  led1.encender();
+    delay(1000);
+  led1.apagar();
+    delay(1000);
+  led2.encender();
+    delay(1000);
+  led2.apagar();
+    delay(1000);
+  led3.encender();
+  delay(1000);
+ led3.apagar();
+    delay(1000);
+  led2.encender();
+    delay(1000);
+  led2.apagar();
+    delay(1000);
+  // Apagar todos los LEDs
+  
+  
+ 
+}
