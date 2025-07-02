@@ -1,0 +1,41 @@
+const int buttonPin = 2;
+const int ledPins[] = {3, 4, 5, 6};
+const int numLeds = 4;
+
+bool lastButtonState = LOW;
+bool currentButtonState;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);  // Usa resistencia interna pull-up
+  for (int i = 0; i < numLeds; i++) {
+    pinMode(ledPins[i], OUTPUT);
+    digitalWrite(ledPins[i], LOW);
+  }
+}
+
+void loop() {
+  currentButtonState = digitalRead(buttonPin);
+
+  // Detecta flanco de bajada (botón presionado)
+  if (lastButtonState == HIGH && currentButtonState == LOW) {
+    secuenciaLed();
+  }
+
+  lastButtonState = currentButtonState;
+}
+
+void secuenciaLed() {
+  // LED1 a LED4
+  for (int i = 0; i < numLeds; i++) {
+    digitalWrite(ledPins[i], HIGH);
+    delay(300);
+    digitalWrite(ledPins[i], LOW);
+  }
+
+  // LED3 a LED1
+  for (int i = numLeds - 2; i >= 0; i--) {
+    digitalWrite(ledPins[i], HIGH);
+    delay(300);
+    digitalWrite(ledPins[i], LOW);
+  }
+}
